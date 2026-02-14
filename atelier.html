@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CancerCare - النوم والراحة</title>
+  <style>
+    :root {
+      --header-footer-bg: #004d26;
+      --body-bg: #000000;
+      --card-bg: #111111;
+      --primary-green: #2ecc71;
+      --text-main: #ffffff;
+      --text-dim: #cccccc;
+      --link-blue: #4d79ff;
+      --emergency-red: #ff4d4d;
+    }
+
+    body {
+      background-color: var(--body-bg);
+      color: var(--text-main);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--header-footer-bg);
+      padding: 10px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 60px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .logo { color: #fff; font-size: 24px; font-weight: bold; text-decoration: none; font-family: serif; }
+
+    .nav-links { display: flex; gap: 20px; list-style: none; align-items: center; margin: 0; }
+    .nav-links a { color: #fff; text-decoration: none; font-size: 15px; }
+
+    #lang-switcher {
+      background: transparent; border: 1px solid #fff; color: #fff;
+      padding: 2px 6px; border-radius: 4px; cursor: pointer;
+    }
+
+    .container { max-width: 900px; margin: 30px auto; padding: 0 20px; flex: 1; }
+
+    .section-title {
+      border-right: 5px solid var(--primary-green);
+      padding-right: 15px;
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+    }
+
+    details {
+      background: var(--card-bg);
+      border: 1px solid #222;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      transition: all 0.3s;
+    }
+
+    details[open] { border-color: var(--primary-green); }
+
+    summary {
+      padding: 18px; font-weight: bold; cursor: pointer;
+      color: var(--primary-green); display: flex;
+      justify-content: space-between; list-style: none; outline: none;
+    }
+
+    summary::after { content: '＋'; transition: 0.3s; }
+    details[open] summary::after { content: '－'; }
+
+    .content {
+      padding: 0 20px 20px 20px;
+      border-top: 1px solid #222;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+
+    .alert-box {
+      background: #002b16;
+      border-right: 5px solid var(--primary-green);
+      padding: 20px;
+      margin-top: 40px;
+      border-radius: 4px;
+    }
+
+    footer {
+      background-color: var(--body-bg);
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid #222;
+    }
+
+    .footer-green-bar {
+      background-color: var(--header-footer-bg);
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 8px;
+    }
+
+    .footer-logo { font-size: 32px; font-weight: bold; color: #fff; margin-bottom: 5px; }
+
+    .contact-info { margin-top: 20px; font-size: 16px; line-height: 2; }
+    .contact-info a { color: var(--link-blue); text-decoration: none; }
+
+    .social-links { margin: 25px 0; display: flex; justify-content: center; gap: 20px; }
+    .social-links a { color: var(--link-blue); text-decoration: none; font-size: 14px; }
+
+    .copyright { font-size: 12px; color: var(--text-dim); margin-top: 20px; }
+
+    @media (max-width: 768px) {
+      header { padding: 10px 3%; }
+      .nav-links { gap: 10px; }
+      .nav-links a { font-size: 13px; }
+      .logo { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">CancerCare</a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html#about" data-i18n="nav_about">حول</a></li>
+      <li><a href="index.html#services" data-i18n="nav_services">خدماتنا</a></li>
+      <li><a href="calendrier.html" data-i18n="nav_calendar">التقويم</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">اتصل بنا</a></li>
+      <li>
+        <select id="lang-switcher">
+          <option value="ar">AR</option>
+          <option value="fr">FR</option>
+        </select>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <h2 class="section-title" data-i18n="main_title">النوم والراحة</h2>
+  <p style="color: var(--text-dim); margin-bottom: 30px;" data-i18n="intro_p">النوم الجيد مهم جداً لتعافي جهاز المناعة وتحسين جودة الحياة العامة.</p>
+
+  <details open>
+    <summary data-i18n="sec1_title">المبادئ الأساسية للنوم الجيد</summary>
+    <div class="content">
+      <ul>
+        <li data-i18n="li1"><strong>الروتين:</strong> حافظ على روتين منتظم بالذهاب للفراش والاستيقاظ في نفس الوقت تقريباً.</li>
+        <li data-i18n="li2"><strong>البيئة:</strong> جهز غرفة مظلمة، هادئة، وباردة نسبياً.</li>
+        <li data-i18n="li3"><strong>الشاشات:</strong> تجنب الهاتف والتلفاز قبل النوم بساعة على الأقل.</li>
+        <li data-i18n="li4"><strong>الاسترخاء:</strong> مارس تمارين التنفس أو التأمل لتهدئة الذهن.</li>
+        <li data-i18n="li5"><strong>المنبهات:</strong> قلل من القهوة والشاي القوي، خاصة بعد فترة الظهيرة.</li>
+        <li data-i18n="li6"><strong>النشاط:</strong> مارس نشاطاً بدنياً خفيفاً في الصباح لتنظيم نومك ليلاً.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary data-i18n="sec2_title">نصائح متقدمة للراحة والتعافي</summary>
+    <div class="content">
+      <ul>
+        <li data-i18n="li7"><strong>القيلولة:</strong> يمكن أخذ قيلولة قصيرة (20-30 دقيقة) نهاراً بشرط ألا تؤثر على نوم الليل[.</li>
+        <li data-i18n="li8"><strong>تجنب القيلولة الطويلة:</strong> القيلولة الطويلة جداً في النهار قد تزعج نومك الليلي[.</li>
+        <li data-i18n="li9"><strong>وظيفة السرير:</strong> تجنب استخدام السرير للأنشطة المسببة للتوتر مثل العمل أو النقاشات الصعبة.</li>
+        <li data-i18n="li10"><strong>مدة النوم:</strong> احرص على نيل قسط من النوم يتراوح بين 7-8 ساعات كل ليلة.</li>
+        <li data-i18n="li11"><strong>مذكرة النوم:</strong> فكر في استخدام مذكرة لتتبع عاداتك واكتشاف المشاكل.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="alert-box">
+    <strong style="color: var(--primary-green);" data-i18n="alert_h">متى تستشير مختصاً؟</strong>
+    <p style="margin-top: 10px;" data-i18n="alert_p">إذا استمر الأرق، استشر طبيبك أو أخصائياً نفسياً لتقييم وضعك.</p>
+  </div>
+</main>
+
+<footer id="contact">
+  <div class="footer-green-bar">
+    <div class="footer-logo">CancerCare</div>
+    <div style="color: #fff; font-size: 14px;" data-i18n="footer_slogan">إعادة تعريف الرعاية في مجال الأورام في تونس.</div>
+  </div>
+
+  <div class="contact-info">
+    <a href="mailto:contact@cancercare.tn">contact@cancercare.tn</a><br>
+    <span data-i18n="footer_phone">هاتف: 123 456 789</span><br>
+    <span data-i18n="footer_address">المرسى، تونس</span><br>
+    <span data-i18n="footer_hours">الإثنين–الجمعة: 10:00 – 18:00</span>
+  </div>
+
+  <div class="social-links">
+    <a href="#">Facebook</a>
+    <a href="#">YouTube</a>
+    <a href="#">Instagram</a>
+  </div>
+
+  <div class="copyright">
+    &copy; CancerCare 2026 – <span data-i18n="footer_copy">جميع الحقوق محفوظة</span>
+  </div>
+</footer>
+
+<script>
+  const translations = {
+    "ar": {
+      "nav_about": "حول", "nav_services": "خدماتنا", "nav_calendar": "التقويم", "nav_contact": "اتصل بنا",
+      "main_title": "النوم والراحة",
+      "intro_p": "النوم الجيد مهم جداً لتعافي جهاز المناعة وتحسين جودة الحياة العامة[cite: 196].",
+      "sec1_title": "المبادئ الأساسية للنوم الجيد",
+      "sec2_title": "نصائح متقدمة للراحة والتعافي",
+      "li1": "<strong>الروتين:</strong> حافظ على روتين منتظم بالذهاب للفراش والاستيقاظ في نفس الوقت تقريباً[cite: 187].",
+      "li2": "<strong>البيئة:</strong> جهز غرفة مظلمة، هادئة، وباردة نسبياً[cite: 188].",
+      "li3": "<strong>الشاشات:</strong> تجنب الهاتف والتلفاز قبل النوم بساعة على الأقل[cite: 189].",
+      "li4": "<strong>الاسترخاء:</strong> مارس تمارين التنفس أو التأمل لتهدئة الذهن[cite: 190, 204].",
+      "li5": "<strong>المنبهات:</strong> قلل من القهوة والشاي القوي، خاصة بعد فترة الظهيرة[cite: 191, 200].",
+      "li6": "<strong>النشاط:</strong> مارس نشاطاً بدنياً خفيفاً في الصباح لتنظيم نومك ليلاً[cite: 195].",
+      "li7": "<strong>القيلولة:</strong> يمكن أخذ قيلولة قصيرة (20-30 دقيقة) نهاراً بشرط ألا تؤثر على نوم الليل[cite: 192].",
+      "li8": "<strong>تجنب القيلولة الطويلة:</strong> القيلولة الطويلة جداً في النهار قد تزعج نومك الليلي[cite: 199].",
+      "li9": "<strong>وظيفة السرير:</strong> تجنب استخدام السرير للأنشطة المسببة للتوتر[cite: 205].",
+      "li10": "<strong>مدة النوم:</strong> احرص على نيل قسط من النوم يتراوح بين 7-8 ساعات كل ليلة[cite: 198].",
+      "li11": "<strong>مذكرة النوم:</strong> فكر في استخدام مذكرة لتتبع عاداتك[cite: 206].",
+      "alert_h": "متى تستشير مختصاً؟",
+      "alert_p": "إذا استمر الأرق، استشر طبيبك أو أخصائياً نفسياً لتقييم وضعك[cite: 194].",
+      "footer_slogan": "إعادة تعريف الرعاية في مجال الأورام في تونس.",
+      "footer_phone": "هاتف: 123 456 789", "footer_address": "المرسى، تونس", "footer_hours": "الإثنين–الجمعة: 10:00 – 18:00",
+      "footer_copy": "جميع الحقوق محفوظة"
+    },
+    "fr": {
+      "nav_about": "À propos", "nav_services": "Services", "nav_calendar": "Calendrier", "nav_contact": "Contact",
+      "main_title": "Sommeil et Repos",
+      "intro_p": "Un bon sommeil est essentiel pour le système immunitaire et la qualité de vie[cite: 196].",
+      "sec1_title": "Principes de Base du Sommeil",
+      "sec2_title": "Conseils Avancés de Récupération",
+      "li1": "<strong>Routine:</strong> Gardez une routine régulière de coucher et de lever[cite: 187].",
+      "li2": "<strong>Environnement:</strong> Préparez une chambre sombre, calme et fraîche[cite: 188].",
+      "li3": "<strong>Écrans:</strong> Évitez les écrans au moins une heure avant le coucher[cite: 189].",
+      "li4": "<strong>Relaxation:</strong> Pratiquez la respiration ou la méditation[cite: 190, 204].",
+      "li5": "<strong>Stimulants:</strong> Réduisez le café et le thé, surtout l'après-midi[cite: 191, 200].",
+      "li6": "<strong>Activité:</strong> Pratiquez une activité légère le matin pour réguler la nuit[cite: 195].",
+      "li7": "<strong>Sieste:</strong> Une courte sieste (20-30 min) est possible si elle ne nuit pas à la nuit[cite: 192].",
+      "li8": "<strong>Évitez les siestes longues:</strong> Elles peuvent perturber votre sommeil nocturne[cite: 199].",
+      "li9": "<strong>Usage du lit:</strong> Évitez le lit pour les activités stressantes[cite: 205].",
+      "li10": "<strong>Durée:</strong> Essayez de dormir environ 7 à 8 heures par nuit[cite: 198].",
+      "li11": "<strong>Journal:</strong> Utilisez un carnet de sommeil pour suivre vos habitudes[cite: 206].",
+      "alert_h": "Quand consulter ?",
+      "alert_p": "Si l'insomnie persiste, consultez votre médecin ou un psychologue[cite: 194].",
+      "footer_slogan": "Redéfinir les soins en Tunisie.",
+      "footer_phone": "Tél: 123 456 789", "footer_address": "La Marsa, Tunisie", "footer_hours": "Lun–Ven: 10:00 – 18:00",
+      "footer_copy": "Tous droits réservés"
+    }
+  };
+
+  document.getElementById('lang-switcher').addEventListener('change', (e) => {
+    const lang = e.target.value;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key]) el.innerHTML = translations[lang][key];
+    });
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+    
+    const title = document.querySelector('.section-title');
+    const alertBox = document.querySelector('.alert-box');
+    if(lang === 'ar') {
+        title.style.borderRight = "5px solid var(--primary-green)"; title.style.borderLeft = "none";
+        alertBox.style.borderRight = "5px solid var(--primary-green)"; alertBox.style.borderLeft = "none";
+    } else {
+        title.style.borderLeft = "5px solid var(--primary-green)"; title.style.borderRight = "none";
+        alertBox.style.borderLeft = "5px solid var(--primary-green)"; alertBox.style.borderRight = "none";
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CancerCare - تقويم المواعيد</title>
+  <style>
+    :root {
+      --header-footer-bg: #004d26;
+      --body-bg: #000000;
+      --card-bg: #111111;
+      --primary-green: #2ecc71;
+      --text-main: #ffffff;
+      --text-dim: #cccccc;
+      --link-blue: #4d79ff;
+    }
+
+    body {
+      background-color: var(--body-bg);
+      color: var(--text-main);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* الهيدر */
+    header {
+      background-color: var(--header-footer-bg);
+      padding: 10px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 60px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .logo { color: #fff; font-size: 24px; font-weight: bold; text-decoration: none; }
+    .nav-links { display: flex; gap: 20px; list-style: none; align-items: center; margin: 0; }
+    .nav-links a { color: #fff; text-decoration: none; font-size: 15px; }
+
+    #lang-switcher {
+      background: transparent; border: 1px solid #fff; color: #fff;
+      padding: 2px 6px; border-radius: 4px; cursor: pointer;
+    }
+
+    /* حاوية التقويم */
+    .container { max-width: 900px; margin: 30px auto; padding: 0 20px; flex: 1; }
+    .section-title { 
+      border-right: 5px solid var(--primary-green); 
+      padding-right: 15px; 
+      margin-bottom: 25px; 
+      font-size: 1.8rem; 
+    }
+
+    .calendar-card {
+      background: var(--card-bg);
+      border: 1px solid #222;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 20px;
+    }
+
+    /* نموذج إضافة موعد */
+    .appointment-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 15px;
+      margin-bottom: 30px;
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    input, select, button {
+      padding: 12px;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background: #222;
+      color: white;
+    }
+
+    button.add-btn {
+      background: var(--primary-green);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      transition: 0.3s;
+    }
+
+    button.add-btn:hover { background: #27ae60; }
+
+    /* قائمة المواعيد */
+    .appointments-list { margin-top: 20px; }
+    .appointment-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1a1a1a;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-right: 4px solid var(--primary-green);
+      border-radius: 4px;
+    }
+
+    .appointment-info { flex: 1; }
+    .appointment-date { font-size: 0.9rem; color: var(--primary-green); }
+    .delete-btn { color: #ff4d4d; cursor: pointer; background: none; border: none; }
+
+    /* فوتر */
+    footer { background-color: var(--body-bg); padding: 40px 20px; text-align: center; border-top: 1px solid #222; margin-top: 50px; }
+    .footer-green-bar { background-color: var(--header-footer-bg); padding: 25px; margin-bottom: 25px; border-radius: 8px; }
+    .footer-logo { font-size: 32px; font-weight: bold; color: #fff; }
+
+    @media (max-width: 768px) {
+      .appointment-form { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">CancerCare</a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html#about" data-i18n="nav_about">حول</a></li>
+      <li><a href="index.html#services" data-i18n="nav_services">خدماتنا</a></li>
+      <li><a href="calendrier.html" data-i18n="nav_calendar">التقويم</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">اتصل بنا</a></li>
+      <li>
+        <select id="lang-switcher">
+          <option value="ar">AR</option>
+          <option value="fr">FR</option>
+        </select>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <h2 class="section-title" data-i18n="main_title">تقويم المواعيد الطبية</h2>
+  <p style="color: var(--text-dim); margin-bottom: 30px;" data-i18n="intro_p">
+    استخدم هذا التقويم لتنظيم مواعيدك وضمان الالتزام بخطتك العلاجية.
+  </p>
+
+  <div class="calendar-card">
+    <div class="appointment-form">
+      <input type="text" id="app-title" data-i18n-placeholder="placeholder_title" placeholder="نوع الموعد (مثلاً: علاج كيميائي، فحص دم)">
+      <input type="datetime-local" id="app-date">
+      <button class="add-btn" onclick="addAppointment()" data-i18n="btn_add">إضافة موعد</button>
+    </div>
+
+    <div class="appointments-list" id="appointments-container">
+      </div>
+  </div>
+
+  <div style="background: #002b16; padding: 15px; border-radius: 8px; font-size: 0.9rem;">
+    <strong data-i18n="note_title">نصيحة تنظيمية:</strong> 
+    <span data-i18n="note_desc">يُنصح باستخدام منبه الهاتف وحافظة الأدوية الأسبوعية بجانب هذا التقويم لضمان أفضل متابعة.</span>
+  </div>
+</main>
+
+<footer id="contact">
+  <div class="footer-green-bar">
+    <div class="footer-logo">CancerCare</div>
+    <div style="color: #fff; font-size: 14px;" data-i18n="footer_slogan">إعادة تعريف الرعاية في مجال الأورام في تونس.</div>
+  </div>
+  <div class="contact-info">
+    <a href="mailto:contact@cancercare.tn">contact@cancercare.tn</a><br>
+    <span data-i18n="footer_phone">هاتف: 123 456 789</span>
+  </div>
+  <div class="copyright">&copy; CancerCare 2026 – <span data-i18n="footer_copy">جميع الحقوق محفوظة</span></div>
+</footer>
+
+<script>
+  // القاموس
+  const translations = {
+    "ar": {
+      "nav_about": "حول", "nav_services": "خدماتنا", "nav_calendar": "التقويم", "nav_contact": "اتصل بنا",
+      "main_title": "تقويم المواعيد الطبية",
+      "intro_p": "استخدم هذا التقويم لتنظيم مواعيدك وضمان الالتزام بخطتك العلاجية.",
+      "placeholder_title": "نوع الموعد (مثلاً: علاج كيميائي، فحص دم)",
+      "btn_add": "إضافة موعد",
+      "note_title": "نصيحة تنظيمية:",
+      "note_desc": "يُنصح باستخدام منبه الهاتف وحافظة الأدوية الأسبوعية بجانب هذا التقويم لضمان أفضل متابعة.",
+      "footer_slogan": "إعادة تعريف الرعاية في مجال الأورام في تونس.",
+      "footer_phone": "هاتف: 123 456 789",
+      "footer_copy": "جميع الحقوق محفوظة",
+      "delete": "حذف",
+      "alert_error": "يرجى إدخال جميع التفاصيل"
+    },
+    "fr": {
+      "nav_about": "À propos", "nav_services": "Services", "nav_calendar": "Calendrier", "nav_contact": "Contact",
+      "main_title": "Calendrier des Rendez-vous",
+      "intro_p": "Utilisez ce calendrier pour organiser vos rendez-vous et assurer le suivi de votre traitement.",
+      "placeholder_title": "Type de RDV (ex: Chimio, Prise de sang)",
+      "btn_add": "Ajouter",
+      "note_title": "Conseil d'organisation :",
+      "note_desc": "Il est conseillé d'utiliser une alarme et un pilulier hebdomadaire en plus de ce calendrier.",
+      "footer_slogan": "Redéfinir les soins en oncologie en Tunisie.",
+      "footer_phone": "Tél: 123 456 789",
+      "footer_copy": "Tous droits réservés",
+      "delete": "Supprimer",
+      "alert_error": "Veuillez remplir tous les champs"
+    }
+  };
+
+  let appointments = JSON.parse(localStorage.getItem('myAppointments')) || [];
+  let currentLang = "ar";
+
+  // دالة الترجمة
+  function updateLanguage(lang) {
+    currentLang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key]) el.innerHTML = translations[lang][key];
+    });
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (translations[lang][key]) el.placeholder = translations[lang][key];
+    });
+
+    // ضبط الاتجاه والتنسيق
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+    
+    const title = document.querySelector('.section-title');
+    if(lang === 'ar') {
+        title.style.borderRight = "5px solid var(--primary-green)"; title.style.borderLeft = "none";
+    } else {
+        title.style.borderLeft = "5px solid var(--primary-green)"; title.style.borderRight = "none";
+    }
+    
+    displayAppointments(); // إعادة العرض لتحديث لغة المواعيد
+  }
+
+  function displayAppointments() {
+    const container = document.getElementById('appointments-container');
+    container.innerHTML = '';
+    appointments.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    appointments.forEach((app, index) => {
+      const dateObj = new Date(app.date);
+      const formattedDate = dateObj.toLocaleDateString(currentLang === 'ar' ? 'ar-TN' : 'fr-FR', { 
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+      });
+
+      container.innerHTML += `
+        <div class="appointment-item" style="border-${currentLang === 'ar' ? 'right' : 'left'}: 4px solid var(--primary-green);">
+          <div class="appointment-info">
+            <div style="font-weight: bold;">${app.title}</div>
+            <div class="appointment-date">${formattedDate}</div>
+          </div>
+          <button class="delete-btn" onclick="deleteAppointment(${index})">${translations[currentLang].delete}</button>
+        </div>
+      `;
+    });
+  }
+
+  function addAppointment() {
+    const title = document.getElementById('app-title').value;
+    const date = document.getElementById('app-date').value;
+
+    if (title && date) {
+      appointments.push({ title, date });
+      localStorage.setItem('myAppointments', JSON.stringify(appointments));
+      displayAppointments();
+      document.getElementById('app-title').value = '';
+      document.getElementById('app-date').value = '';
+    } else {
+      alert(translations[currentLang].alert_error);
+    }
+  }
+
+  function deleteAppointment(index) {
+    appointments.splice(index, 1);
+    localStorage.setItem('myAppointments', JSON.stringify(appointments));
+    displayAppointments();
+  }
+
+  document.getElementById('lang-switcher').addEventListener('change', (e) => updateLanguage(e.target.value));
+
+  // التشغيل الأولي
+  updateLanguage("ar");
+</script>
+
+</body>
+</html>

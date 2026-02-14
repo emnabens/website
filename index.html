@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>CancerCare</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* ===== NOUVEAUX STYLES APPLIQUÉS ===== */
+    body, html {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #0d4524; /* Match navbar for seamless look */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #0d4524;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #f0e9e6;
+      font-family: 'Georgia', serif;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      font-size: 1rem;
+      color: #f0e9e6;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #a9d1b9;
+    }
+
+    #lang-switcher {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid #ccc;
+      color: white;
+      padding: 4px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      background-image: url('together.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 70px; /* Adjusted for fixed header */
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-overlay h1 {
+      font-size: clamp(1.5rem, 5vw, 3rem); /* Responsive font size */
+      font-family: "Nirmala UI Semilight", sans-serif;
+      color: #0d4524;
+      text-align: center;
+      padding: 0 20px;
+      margin: 0;
+    }
+
+    /* ABOUT SECTION */
+    .about-it {
+      padding: 4rem 2rem;
+      background-color: #fdfcfb;
+    }
+
+    .about-it h2 {
+      font-size: 1.5rem;
+      color: #0d4524;
+      margin-bottom: 1rem;
+      font-family: 'Georgia', serif;
+    }
+
+    .about-it p {
+      max-width: 800px;
+      margin: 0;
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.8;
+    }
+
+    /* SERVICES SECTION */
+    .services-section {
+      padding: 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      padding: 40px 0;
+      border-bottom: 1px solid #0d4524;
+      gap: 40px;
+    }
+
+    .service-item img {
+      width: 100%;
+      max-width: 360px; /* Fixed max width but responsive below that */
+      height: auto;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .service-text {
+      flex: 1;
+    }
+
+    .service-text h3 {
+      font-size: 1.5rem;
+      color: #0d4524;
+      margin-bottom: 1rem;
+      font-family: 'Georgia', serif;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      padding: 0.5em 1.2em;
+      background-color: #0d4524;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 15px;
+      transition: opacity 0.3s;
+    }
+    
+    .btn:hover { opacity: 0.9; }
+
+    /* CONTACT & FOOTER */
+    .contact-section {
+      text-align: center;
+      padding: 60px 0 0;
+    }
+
+    .logo-band {
+      width: 100%;
+      background-color: #0d4524;
+      padding: 25px 20px;
+      color: white;
+      box-sizing: border-box;
+    }
+
+    .logo-band h2 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .contact-info {
+      padding: 30px 20px;
+    }
+    
+    .contact-info a { color: #0d4524; text-decoration: none; font-weight: bold; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #fdfcfb;
+      border-top: 1px solid #eee;
+    }
+
+    /* RESPONSIVE DESIGN ADJUSTMENTS */
+    @media (max-width: 900px) {
+      .navbar { padding: 1rem; }
+      .nav-links { gap: 1rem; }
+      
+      .service-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+      .service-item img {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 0.5rem;
+      }
+      .nav-links li a {
+        font-size: 0.85rem;
+      }
+      .hero { height: 300px; }
+    }
+    
+    /* RTL Adjustments for Arabic */
+    [dir="rtl"] .about-it, 
+    [dir="rtl"] .about-it p {
+      text-align: right;
+    }
+    [dir="rtl"] .service-text {
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="logo">CancerCare</div>
+      <ul class="nav-links">
+        <li><a href="#about" data-i18n="nav_about">À propos</a></li>
+        <li><a href="#services" data-i18n="nav_services">Services</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+        <li>
+          <select id="lang-switcher">
+            <option value="fr">FR</option>
+            <option value="ar">AR</option>
+          </select>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-overlay">
+        <h1 data-i18n="hero_title">Redéfinir le soin oncologique en Tunisie.</h1>
+      </div>
+    </section>
+
+    <section class="about-it" id="about">
+      <h2><span data-i18n="about_h2">À propos</span> <span class="hig">CancerCare</span></h2>
+      <p data-i18n="about_p">
+        CancerCare est une initiative d'Éducation Thérapeutique du Patient (ETP) dédiée à l'amélioration de la qualité de vie des patients atteints de cancer en Tunisie.
+      </p>
+    </section>
+
+    <section id="services" class="services-section">
+      <h2 data-i18n="services_title">Nos Services</h2>
+
+      <div class="service-item">
+        <img src="alimentation.jpg" alt="Accompagnement nutritionnel">
+        <div class="service-text">
+          <h3 data-i18n="s1_title">Accompagnement nutritionnel</h3>
+          <p data-i18n="s1_p">Conseils alimentaires personnalisés pour soutenir le traitement, améliorer l’énergie et renforcer l’immunité.</p>
+          <a href="alimentation.html" class="btn" data-i18n="btn_consult">Consulter</a>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <img src="suivie.jpg" alt="Suivi thérapeutique interactif">
+        <div class="service-text">
+          <h3 data-i18n="s2_title">Suivi thérapeutique interactif</h3>
+          <p data-i18n="s2_p">Suivi régulier de l’état du patient, rappels de traitement et communication continue avec l’équipe.</p>
+          <a href="suivie.html" class="btn" data-i18n="btn_consult">Consulter</a>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <img src="atelier.jpg" alt="Ateliers bien-être et sommeil">
+        <div class="service-text">
+          <h3 data-i18n="s3_title">Ateliers bien-être & sommeil</h3>
+          <p data-i18n="s3_p">Ateliers pratiques pour réduire le stress, améliorer le sommeil et favoriser le bien-être mental.</p>
+          <a href="atelier.html" class="btn" data-i18n="btn_consult">Consulter</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="logo-band">
+        <div class="logo">
+          <h2>CancerCare</h2>
+          <p data-i18n="footer_subtitle">Redéfinir le soin oncologique en Tunisie.</p>
+        </div>
+      </div>
+      <div class="contact-info">
+        <p><a href="mailto:contact@cancercare.tn">contact@cancercare.tn</a></p>
+        <p data-i18n="contact_tel">Tél : 123 456 789</p>
+        <p data-i18n="contact_loc">La Marsa, Tunis</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p data-i18n="footer_rights">© 2026 CancerCare – Tous droits réservés</p>
+  </footer>
+
+  <script>
+    const translations = {
+      "fr": {
+        "nav_about": "À propos", "nav_services": "Services", "nav_calendar": "Calendrier", "nav_contact": "Contact",
+        "hero_title": "Redéfinir le soin oncologique en Tunisie.", "about_h2": "À propos",
+        "about_p": "CancerCare est une initiative d'Éducation Thérapeutique du Patient (ETP) dédiée à l'amélioration de la qualité de vie des patients atteints de cancer en Tunisie.",
+        "services_title": "Nos Services", "btn_consult": "Consulter", "footer_subtitle": "Redéfinir le soin oncologique en Tunisie.",
+        "s1_title": "Accompagnement nutritionnel", "s1_p": "Conseils alimentaires personnalisés pour soutenir le traitement.",
+        "s2_title": "Suivi thérapeutique interactif", "s2_p": "Suivi régulier de l’état du patient et rappels.",
+        "s3_title": "Ateliers bien-être & sommeil", "s3_p": "Ateliers pratiques pour réduire le stress.",
+        "contact_tel": "Tél : 123 456 789", "contact_loc": "La Marsa, Tunis", "footer_rights": "© 2026 CancerCare – Tous droits réservés"
+      },
+      "ar": {
+        "nav_about": "حول", "nav_services": "خدماتنا", "nav_calendar": "التقويم", "nav_contact": "اتصل بنا",
+        "hero_title": "إعادة تعريف الرعاية في مجال الأورام في تونس.", "about_h2": "حول",
+        "about_p": "تعتبر CancerCare مبادرة للتربية العلاجية للمرضى (ETP)، تهدف إلى تحسين جودة حياة المصابين بالسرطان في تونس.",
+        "services_title": "خدماتنا", "btn_consult": "اطّلع", "footer_subtitle": "إعادة تعريف الرعاية في مجال الأورام في تونس.",
+        "s1_title": "المرافقة الغذائية", "s1_p": "نصائح غذائية مخصصة لدعم العلاج وتعزيز المناعة.",
+        "s2_title": "متابعة علاجية تفاعلية", "s2_p": "متابعة منتظمة لحالة المريض وتذكير بالمواعيد.",
+        "s3_title": "ورش عمل الرفاهية", "s3_p": "ورش عمل لتقليل التوتر وتحسين جودة النوم.",
+        "contact_tel": "هاتف: 123 456 789", "contact_loc": "المرسى، تونس", "footer_rights": "© 2026 CancerCare – جميع الحقوق محفوظة"
+      }
+    };
+
+    document.getElementById('lang-switcher').addEventListener('change', (e) => {
+      const lang = e.target.value;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+      document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+      document.documentElement.lang = lang;
+    });
+  </script>
+</body>
+</html>

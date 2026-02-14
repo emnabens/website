@@ -1,0 +1,306 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(169, 43, 43, 0.1);
+    z-index: 10;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #0d4524;  /* couleur bleu foncé */
+;
+
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f0e9e6;
+    font-family: 'Georgia', serif;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #f0e9e6;
+    transition: color 0.3s;
+  }
+  
+  .nav-links li a:hover {
+    color: #04002f;
+  }
+  
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-image: url('together.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-size: cover; /* l'image remplit toute la section */
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center; /* centre horizontalement */
+    align-items: center; 
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    white-space: nowrap;  
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-overlay h1 {
+    font-size: 10vw;
+    font-family:Nirmala UI Semilight ;
+    color: #ebe2df;
+    
+  }
+  .about-it{
+    padding: 4rem 2rem;
+    background-color: #fdfcfb;
+    text-align: left;
+  }
+  
+  .about-it h2 {
+    font-size: 1.5rem;
+    color: #0f265e;
+    margin-bottom: 1rem;
+    font-family: 'Georgia', serif;
+    text-align: left;
+  }
+  .about-it h3 {
+    font-size: 1.5rem;
+    color: #0f265e;
+    margin-bottom: 1rem;
+    font-family: 'Georgia', serif;
+    text-align: left;
+  }
+  
+  .about-it .hig {
+    font-style: italic;
+    text-align: left;
+  }
+  
+  .about-it p {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: #f8f1ee;
+    line-height: 1.8;
+  }
+  
+  .header {
+    background-color:#0f5e33; 
+    color: #fff; 
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .logo-text {
+    font-family:Georgia, 'Times New Roman', Times, serif; 
+    font-size: 48px;
+  }
+  
+  .logo-subtext {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  /* ===== SERVICES (DIV VERSION) ===== */
+
+.services-section {
+  padding: 4rem 2rem;
+}
+
+/* Chaque service = carte horizontale */
+.service-item {
+  display: flex;
+  align-items: center;
+  padding: 40px 0;
+  border-bottom: 1px solid  #0d4524;
+}
+
+/* Lien */
+.service-item a {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  width: 100%;
+  text-decoration: none;
+}
+
+/* Image */
+.service-item img {
+  width: 360px;      /* même largeur */
+  height: 220px;     /* même hauteur */
+  object-fit: cover; /* recadrage propre */
+  border-radius: 6px;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .service-item a {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .service-item img {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+  
+ /* ===== CONTACT LOGO CENTERED WITH BEIGE BAND ===== */
+
+/* ===== CONTACT SECTION LAYOUT ===== */
+
+.contact-section {
+  text-align: center;
+  padding: 60px 20px 0;
+
+}
+
+/* Infos & réseaux */
+.contact-info,
+.social-links {
+  margin-bottom: 30px;
+}
+
+.social-links a {
+  margin: 0 10px;
+  text-decoration: none;
+}
+*
+
+/* BANDE TOUT LE LONG */
+.logo-band {
+  width: 100vw;               /* full viewport width */
+  position: relative;          /* for internal positioning */
+  left: 50%;                   /* reset any offset */
+  right: 50%;
+  margin-left: -50vw;          /* pull it to the left edge */
+  margin-right: -50vw;         /* pull it to the right edge */
+  background-color: #0d4524;   /* your green color */
+  padding: 25px 0;
+  text-align: center;
+  color: white;
+  box-sizing: border-box;
+}
+
+/* Center the content inside */
+.logo-band .logo {
+  display: inline-block;
+  max-width: 1200px;           /* optional: content max width */
+  width: 90%;
+  text-align: center;
+}
+
+/* Texte du titre */
+.logo-band .logo h2 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* Sous-titre / slogan */
+.logo-band .logo p {
+  margin: 5px 0 0;
+  font-size: 1rem;
+}
+
+/* Responsive : réduire la taille du titre sur mobile */
+@media (max-width: 768px) {
+  .logo-band .logo h2 {
+    font-size: 2rem;
+  }
+  .logo-band .logo p {
+    font-size: 0.9rem;
+  }
+}
+
+.service-text {
+  position: relative;
+}
+
+/* Title */
+.service-text h3 {
+  display: inline-block;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+/* Button */
+.btn {
+  display: inline-flex;           /* flex layout to center text */
+  align-items: center;            /* vertical center */
+  justify-content: center;        /* horizontal center */
+  font-size: 1.2rem;              /* match h3 size */
+  padding: 0.2em 0.6em;           /* small padding around text */
+  background-color: #0d4524;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  line-height: 1;                 /* ensures text height matches button */
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0d4524;
+}
+/* Style par défaut (PC) */
+.hero-overlay h1 {
+  font-size: 3rem; /* Taille normale sur grand écran */
+  text-align: center;
+  padding: 0 20px;
+  word-wrap: break-word;
+}
+
+/* Ajustement pour les mobiles (Écrans de moins de 768px) */
+@media (max-width: 768px) {
+  .hero-overlay h1 {
+    font-size: 1.8rem; /* Plus petit pour tenir sur une ligne ou deux */
+    line-height: 1.2;
+  }
+}
+
+/* Ajustement pour les très petits téléphones (Moins de 480px) */
+@media (max-width: 480px) {
+  .hero-overlay h1 {
+    font-size: 1.5rem;
+    padding: 0 10px;
+  }
+}

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CancerCare - المتابعة العلاجية</title>
+  <style>
+    :root {
+      --header-footer-bg: #004d26;
+      --body-bg: #000000;
+      --card-bg: #111111;
+      --primary-green: #2ecc71;
+      --text-main: #ffffff;
+      --text-dim: #cccccc;
+      --link-blue: #4d79ff;
+      --emergency-red: #ff4d4d;
+    }
+
+    body {
+      background-color: var(--body-bg);
+      color: var(--text-main);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* الهيدر المتجاوب */
+    header {
+      background-color: var(--header-footer-bg);
+      padding: 10px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 60px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: none;
+      font-family: serif;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      align-items: center;
+      margin: 0;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    #lang-switcher {
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* حاوية المحتوى */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    .section-title {
+      border-right: 5px solid var(--primary-green);
+      padding-right: 15px;
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+    }
+
+    /* الحاويات القابلة للتمدد */
+    details {
+      background: var(--card-bg);
+      border: 1px solid #222;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      transition: all 0.3s;
+    }
+
+    details[open] { border-color: var(--primary-green); }
+
+    summary {
+      padding: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      color: var(--primary-green);
+      display: flex;
+      justify-content: space-between;
+      list-style: none;
+      outline: none;
+    }
+
+    summary::after { content: '＋'; transition: 0.3s; }
+    details[open] summary::after { content: '－'; }
+
+    .content {
+      padding: 0 20px 20px 20px;
+      border-top: 1px solid #222;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+
+    /* صندوق الطوارئ */
+    .alert-box {
+      background: #2a0a0a;
+      border-right: 5px solid var(--emergency-red);
+      padding: 20px;
+      margin-top: 40px;
+      border-radius: 8px;
+    }
+
+    .emergency-item { margin-bottom: 15px; }
+    .emergency-item strong { color: var(--emergency-red); display: block; margin-bottom: 5px; }
+
+    /* قسم الاتصال (Footer) */
+    footer {
+      background-color: var(--body-bg);
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid #222;
+    }
+
+    .footer-green-bar {
+      background-color: var(--header-footer-bg);
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 8px;
+    }
+
+    .footer-logo {
+      font-size: 32px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .contact-info {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .contact-info a {
+      color: var(--link-blue);
+      text-decoration: none;
+    }
+
+    .social-links {
+      margin: 25px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-links a { color: var(--link-blue); text-decoration: none; font-size: 14px; }
+
+    .copyright {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 20px;
+    }
+
+    /* تعديلات الهاتف */
+    @media (max-width: 768px) {
+      header { padding: 10px 3%; }
+      .nav-links { gap: 10px; }
+      .nav-links a { font-size: 13px; }
+      .logo { font-size: 20px; }
+      .section-title { font-size: 1.5rem; }
+      .footer-logo { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">CancerCare</a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html#about" data-i18n="nav_about">حول</a></li>
+      <li><a href="index.html#services" data-i18n="nav_services">خدماتنا</a></li>
+      <li><a href="calendrier.html" data-i18n="nav_calendar">التقويم</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">اتصل بنا</a></li>
+      <li>
+        <select id="lang-switcher">
+          <option value="ar">AR</option>
+          <option value="fr">FR</option>
+        </select>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <h2 class="section-title" data-i18n="main_title">المتابعة العلاجية التفاعلية</h2>
+  <p style="color: var(--text-dim); margin-bottom: 30px;" data-i18n="intro_p">الالتزام بالعلاج يساعد على مكافحة المرض بشكل أفضل. اتبع هذه الإرشادات لضمان سلامتك.</p>
+
+  <details open>
+    <summary data-i18n="sec1_title">بروتوكول تناول العلاج</summary>
+    <div class="content">
+      <ul>
+        <li data-i18n="li1"><strong>الالتزام التام:</strong> خذ علاجك دائماً كما شرح الطبيب مع احترام الموعد والجرعة والمدة.</li>
+        <li data-i18n="li2"><strong>قاعدة عدم التغيير:</strong> لا تغير علاجك بنفسك أبداً، ولا تتناول أعشاباً أو مكملات دون استشارة الطبيب.</li>
+        <li data-i18n="li3"><strong>في حال النسيان:</strong> لا تضاعف الجرعة التالية؛ اطلب نصيحة الطبيب أو الصيدلي فوراً.</li>
+        <li data-i18n="li4"><strong>أدوات التنظيم:</strong> استخدم منبه الهاتف، حافظة الأدوية الأسبوعية، أو دفتراً للمتابعة.</li>
+      </ul>
+    </div>
+  </details>
+  
+  <details style="margin-top: 30px;">
+    <summary data-i18n="sec2_title">نصائح عملية للاستعداد</summary>
+    <div class="content">
+      <ul>
+        <li data-i18n="p1">احتفظ دائماً بقائمة علاجاتك وأرقام الطوارئ معك في جميع الأوقات.</li>
+        <li data-i18n="p2">دون الأعراض فور ظهورها لمشاركتها مع الفريق الطبي بدقة.</li>
+        <li data-i18n="p3">اشرح لعائلتك متى يجب عليهم التصرف والاتصال بالطوارئ فوراً.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="alert-box">
+    <h3 style="color: var(--emergency-red); margin-top: 0;" data-i18n="alert_h">إدارة حالات الطوارئ (استشارة فورية)</h3>
+    <p data-i18n="alert_intro">تتطلب المواقف التالية استشارة طبية عاجلة، لا تتجاهلها أبداً:</p>
+    
+    <div class="emergency-item">
+      <strong data-i18n="em_title1">1. الحمى وعلامات العدوى</strong>
+      <span data-i18n="em_desc1">حرارة 38.5° مئوية فأكثر، قشعريرة، تعرق، أو حرقان أثناء التبول.</span>
+    </div>
+
+    <div class="emergency-item">
+      <strong data-i18n="em_title2">2. صعوبات التنفس والصدر</strong>
+      <span data-i18n="em_desc2">ضيق مفاجئ في التنفس، ألم في الصدر، أو شعور بالضغط والانقباض.</span>
+    </div>
+
+    <div class="emergency-item">
+      <strong data-i18n="em_title3">3. النزيف والكدمات</strong>
+      <span data-i18n="em_desc3">نزيف الأنف أو اللثة المتكرر، دم في البول أو البراز، أو كدمات مفاجئة بدون سبب.</span>
+    </div>
+
+    <div class="emergency-item">
+      <strong data-i18n="em_title4">4. الجهاز الهضمي والجفاف</strong>
+      <span data-i18n="em_desc4">قيء متكرر أو إسهال حاد يستمر لأكثر من 24 ساعة (خطر الإصابة بالجفاف).</span>
+    </div>
+
+    <div class="emergency-item">
+      <strong data-i18n="em_title5">5. رد الفعل التحسسي والإعياء</strong>
+      <span data-i18n="em_desc5">تورم الوجه أو اللسان، حكة شديدة، فقدان الوعي، أو ضعف كبير ومفاجئ.</span>
+    </div>
+  </div>
+
+  
+</main>
+
+<footer id="contact">
+  <div class="footer-green-bar">
+    <div class="footer-logo">CancerCare</div>
+    <div style="color: #fff; font-size: 14px;" data-i18n="footer_slogan">إعادة تعريف الرعاية في مجال الأورام في تونس.</div>
+  </div>
+
+  <div class="contact-info">
+    <a href="mailto:contact@cancercare.tn">contact@cancercare.tn</a><br>
+    <span data-i18n="footer_phone">هاتف: 123 456 789</span><br>
+    <span data-i18n="footer_address">المرسى، تونس</span><br>
+    <span data-i18n="footer_hours">الإثنين–الجمعة: 10:00 – 18:00</span>
+  </div>
+
+  <div class="social-links">
+    <a href="#">Facebook</a>
+    <a href="#">YouTube</a>
+    <a href="#">Instagram</a>
+  </div>
+
+  <div class="copyright">
+    &copy; CancerCare 2026 – <span data-i18n="footer_copy">جميع الحقوق محفوظة</span>
+  </div>
+</footer>
+
+<script>
+  const translations = {
+    "ar": {
+      "nav_about": "حول", "nav_services": "خدماتنا", "nav_calendar": "التقويم", "nav_contact": "اتصل بنا",
+      "main_title": "المتابعة العلاجية التفاعلية",
+      "intro_p": "الالتزام بالعلاج يساعد على مكافحة المرض بشكل أفضل. اتبع هذه الإرشادات لضمان سلامتك.",
+      "sec1_title": "بروتوكول تناول العلاج",
+      "li1": "<strong>الالتزام التام:</strong> خذ علاجك دائماً كما شرح الطبيب مع احترام الموعد والجرعة والمدة.",
+      "li2": "<strong>قاعدة عدم التغيير:</strong> لا تغير علاجك بنفسك أبداً، ولا تتناول أعشاباً أو مكملات دون استشارة الطبيب.",
+      "li3": "<strong>في حال النسيان:</strong> لا تضاعف الجرعة التالية؛ اطلب نصيحة الطبيب أو الصيدلي فوراً.",
+      "li4": "<strong>أدوات التنظيم:</strong> استخدم منبه الهاتف، حافظة الأدوية الأسبوعية، أو دفتراً للمتابعة.",
+      "alert_h": "إدارة حالات الطوارئ (استشارة فورية)",
+      "alert_intro": "تتطلب المواقف التالية استشارة طبية عاجلة، لا تتجاهلها أبداً:",
+      "em_title1": "1. الحمى وعلامات العدوى",
+      "em_desc1": "حرارة 38.5° مئوية فأكثر، قشعريرة، تعرق، أو حرقان أثناء التبول.",
+      "em_title2": "2. صعوبات التنفس والصدر",
+      "em_desc2": "ضيق مفاجئ في التنفس، ألم في الصدر، أو شعور بالضغط والانقباض.",
+      "em_title3": "3. النزيف والكدمات",
+      "em_desc3": "نزيف الأنف أو اللثة المتكرر، دم في البول أو البراز، أو كدمات مفاجئة بدون سبب.",
+      "em_title4": "4. الجهاز الهضمي والجفاف",
+      "em_desc4": "قيء متكرر أو إسهال حاد يستمر لأكثر من 24 ساعة (خطر الإصابة بالجفاف).",
+      "em_title5": "5. رد الفعل التحسسي والإعياء",
+      "em_desc5": "تورم الوجه أو اللسان، حكة شديدة، فقدان الوعي، أو ضعف كبير ومفاجئ.",
+      "sec2_title": "نصائح عملية للاستعداد",
+      "p1": "احتفظ دائماً بقائمة علاجاتك وأرقام الطوارئ معك في جميع الأوقات.",
+      "p2": "دون الأعراض فور ظهورها لمشاركتها مع الفريق الطبي بدقة.",
+      "p3": "اشرح لعائلتك متى يجب عليهم التصرف والاتصال بالطوارئ فوراً.",
+      "footer_slogan": "إعادة تعريف الرعاية في مجال الأورام في تونس.",
+      "footer_phone": "هاتف: 123 456 789", "footer_address": "المرسى، تونس", "footer_hours": "الإثنين–الجمعة: 10:00 – 18:00",
+      "footer_copy": "جميع الحقوق محفوظة"
+    },
+    "fr": {
+      "nav_about": "À propos", "nav_services": "Services", "nav_calendar": "Calendrier", "nav_contact": "Contact",
+      "main_title": "Suivi Thérapeutique Interactif",
+      "intro_p": "L'adhésion au traitement aide à mieux combattre la maladie. Suivez ces instructions pour votre sécurité.",
+      "sec1_title": "Protocole de Prise du Traitement",
+      "li1": "<strong>Observance:</strong> Prenez toujours votre traitement selon les indications du médecin (dose et durée).",
+      "li2": "<strong>Pas d'Auto-modification:</strong> Ne modifiez jamais votre traitement seul et n'utilisez pas de compléments sans avis.",
+      "li3": "<strong>Oubli:</strong> Ne doublez jamais la dose suivante ; demandez conseil à votre médecin ou pharmacien.",
+      "li4": "<strong>Outils:</strong> Utilisez une alarme, un pilulier hebdomadaire ou un carnet de suivi.",
+      "alert_h": "Gestion des Urgences (Consultation Immédiate)",
+      "alert_intro": "Les situations suivantes nécessitent une consultation urgente, ne les ignorez jamais :",
+      "em_title1": "1. Fièvre et signes d'infection",
+      "em_desc1": "Température ≥ 38.5°C, frissons, sueurs ou brûlures urinaires.",
+      "em_title2": "2. Difficultés respiratoires et thoraciques",
+      "em_desc2": "Essoufflement soudain, douleur thoracique ou sensation d'oppression.",
+      "em_title3": "3. Saignements et ecchymoses",
+      "em_desc3": "Saignements fréquents, sang dans les urines/selles ou bleus inexpliqués.",
+      "em_title4": "4. Système digestif et déshydratation",
+      "em_desc4": "Vomissements répétés ou diarrhée aiguë > 24h (risque de déshydratation).",
+      "em_title5": "5. Réaction allergique et malaise",
+      "em_desc5": "Gonflement du visage, démangeaisons intenses, perte de conscience ou faiblesse soudaine.",
+      "sec2_title": "Conseils Pratiques",
+      "p1": "Gardez toujours sur vous la liste de vos traitements et les numéros d'urgence.",
+      "p2": "Notez vos symptômes dès leur apparition pour l'équipe médicale.",
+      "p3": "Expliquez à votre famille quand elle doit agir et appeler les secours.",
+      "footer_slogan": "Redéfinir les soins en oncologie en Tunisie.",
+      "footer_phone": "Tél: 123 456 789", "footer_address": "La Marsa, Tunisie", "footer_hours": "Lun–Ven: 10:00 – 18:00",
+      "footer_copy": "Tous droits réservés"
+    }
+  };
+
+  document.getElementById('lang-switcher').addEventListener('change', (e) => {
+    const lang = e.target.value;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key]) el.innerHTML = translations[lang][key];
+    });
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+    
+    // تعديل اتجاه الحدود بناءً على اللغة
+    const title = document.querySelector('.section-title');
+    const alertBox = document.querySelector('.alert-box');
+    if(lang === 'ar') {
+        title.style.borderRight = "5px solid var(--primary-green)"; title.style.borderLeft = "none";
+        alertBox.style.borderRight = "5px solid var(--emergency-red)"; alertBox.style.borderLeft = "none";
+    } else {
+        title.style.borderLeft = "5px solid var(--primary-green)"; title.style.borderRight = "none";
+        alertBox.style.borderLeft = "5px solid var(--emergency-red)"; alertBox.style.borderRight = "none";
+    }
+  });
+</script>
+
+</body>
+</html>

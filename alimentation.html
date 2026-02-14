@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CancerCare - المرافقة الغذائية</title>
+  <style>
+    /* المتغيرات اللونية */
+    :root {
+      --header-footer-bg: #004d26; /* الأخضر الداكن */
+      --body-bg: #000000;
+      --card-bg: #111111;
+      --primary-green: #2ecc71;
+      --text-main: #ffffff;
+      --text-dim: #cccccc;
+      --link-blue: #4d79ff;
+    }
+
+    body {
+      background-color: var(--body-bg);
+      color: var(--text-main);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* هيدر متجاوب */
+    header {
+      background-color: var(--header-footer-bg);
+      padding: 10px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 60px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: none;
+      font-family: serif;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      align-items: center;
+      margin: 0;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    #lang-switcher {
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* حاوية المحتوى */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    .section-title {
+      border-right: 5px solid var(--primary-green);
+      padding-right: 15px;
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+    }
+
+    /* الحاويات القابلة للتمدد */
+    details {
+      background: var(--card-bg);
+      border: 1px solid #222;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      transition: all 0.3s;
+    }
+
+    details[open] { border-color: var(--primary-green); }
+
+    summary {
+      padding: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      color: var(--primary-green);
+      display: flex;
+      justify-content: space-between;
+      list-style: none;
+      outline: none;
+    }
+
+    summary::after { content: '＋'; transition: 0.3s; }
+    details[open] summary::after { content: '－'; }
+
+    .content {
+      padding: 0 20px 20px 20px;
+      border-top: 1px solid #222;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+
+    .alert-box {
+      background: #002b16;
+      border-right: 5px solid var(--primary-green);
+      padding: 20px;
+      margin-top: 40px;
+      border-radius: 4px;
+    }
+
+    /* قسم الاتصال (Footer) */
+    footer {
+      background-color: var(--body-bg);
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid #222;
+    }
+
+    .footer-green-bar {
+      background-color: var(--header-footer-bg);
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 8px;
+    }
+
+    .footer-logo {
+      font-size: 32px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .contact-info {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .contact-info a {
+      color: var(--link-blue);
+      text-decoration: none;
+    }
+
+    .social-links {
+      margin: 25px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-links a { color: var(--link-blue); text-decoration: none; font-size: 14px; }
+
+    .copyright {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 20px;
+    }
+
+    /* تعديلات الهاتف */
+    @media (max-width: 768px) {
+      header { padding: 10px 3%; }
+      .nav-links { gap: 10px; }
+      .nav-links a { font-size: 13px; }
+      .logo { font-size: 20px; }
+      .section-title { font-size: 1.5rem; }
+      .footer-logo { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">CancerCare</a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html#about" data-i18n="nav_about">حول</a></li>
+      <li><a href="index.html#services" data-i18n="nav_services">خدماتنا</a></li>
+      <li><a href="calendrier.html" data-i18n="nav_calendar">التقويم</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">اتصل بنا</a></li>
+      <li>
+        <select id="lang-switcher">
+          <option value="ar">AR</option>
+          <option value="fr">FR</option>
+        </select>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <h2 class="section-title" data-i18n="main_title">المرافقة الغذائية</h2>
+  <p style="color: var(--text-dim); margin-bottom: 30px;" data-i18n="intro_p">دليل شامل للنظام الغذائي لدعم الجسم أثناء مراحل العلاج المختلفة.</p>
+
+  <details>
+    <summary data-i18n="sec1_title">المبادئ الأساسية للتغذية</summary>
+    <div class="content">
+      <ul>
+        <li data-i18n="li1"><strong>الخضروات:</strong> تناول 5 حصص يومياً على الأقل من الفواكه والخضروات.</li>
+        <li data-i18n="li2"><strong>الألياف:</strong> استبدل الخبز الأبيض بالحبوب الكاملة كالأسمر.</li>
+        <li data-i18n="li3"><strong>البقوليات:</strong> أكثر من تناول العدس والحمص والفول.</li>
+        <li data-i18n="li4"><strong>المصنعات:</strong> قلل من اللحوم الحمراء والمصنعة والمشروبات الغازية.</li>
+        <li data-i18n="li5"><strong>الطهي:</strong> فضل البخار والسلق بدلاً من القلي.</li>
+        <li data-i18n="li6"><strong>البروتين:</strong> ركز على الأسماك والبيض ومنتجات الألبان للحفاظ على العضلات.</li>
+        <li data-i18n="li7"><strong>الدهون:</strong> استخدم زيت الزيتون والأفوكادو والمكسرات.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary data-i18n="sec2_title">إدارة الأعراض الجانبية والطاقة</summary>
+    <div class="content">
+      <ul>
+        <li data-i18n="li8"><strong>الوجبات:</strong> تناول وجبات صغيرة ومتعددة في اليوم.</li>
+        <li data-i18n="li9"><strong>القوام:</strong> اختر أطعمة طرية (مهروس، حساء) في حال التقرحات.</li>
+        <li data-i18n="li10"><strong>التهيج:</strong> تجنب الأطعمة الحارة أو الحمضية التي تهيج الفم.</li>
+        <li data-i18n="li11"><strong>المذاق:</strong> استخدم توابل خفيفة للتغلب على تغير الطعم.</li>
+        <li data-i18n="li12"><strong>الوزن:</strong> راقب وزنك بانتظام لمنع سوء التغذية.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary data-i18n="sec3_title">نصائح الترطيب (السوائل)</summary>
+    <div class="content">
+      <ul>
+        <li data-i18n="li13"><strong>الانتظام:</strong> اشرب الماء بانتظام طوال اليوم.</li>
+        <li data-i18n="li14"><strong>التعويض:</strong> زد السوائل في حال الحمى أو الإسهال.</li>
+        <li data-i18n="li15"><strong>الجفاف:</strong> قلل الكافيين؛ فالبول الفاتح علامة ترطيب جيد.</li>
+        <li data-i18n="li16"><strong>نصيحة:</strong> امص مكعبات الثلج في حال جفاف الفم.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="alert-box">
+    <strong style="color: var(--primary-green);" data-i18n="alert_h">تحذيرات هامة:</strong>
+    <p style="margin-top: 10px;" data-i18n="alert_p">لا تتناول مكملات أو أعشاب دون استشارة الطبيب لتجنب التفاعلات مع العلاج.</p>
+  </div>
+</main>
+
+<footer id="contact">
+  <div class="footer-green-bar">
+    <div class="footer-logo">CancerCare</div>
+    <div style="color: #fff; font-size: 14px;" data-i18n="footer_slogan">إعادة تعريف الرعاية في مجال الأورام في تونس.</div>
+  </div>
+
+  <div class="contact-info">
+    <a href="mailto:contact@cancercare.tn">contact@cancercare.tn</a><br>
+    <span data-i18n="footer_phone">هاتف: 123 456 789</span><br>
+    <span data-i18n="footer_address">المرسى، تونس</span><br>
+    <span data-i18n="footer_hours">الإثنين–الجمعة: 10:00 – 18:00</span>
+  </div>
+
+  <div class="social-links">
+    <a href="#">Facebook</a>
+    <a href="#">YouTube</a>
+    <a href="#">Instagram</a>
+  </div>
+
+  <div class="copyright">
+    &copy; CancerCare 2026 – <span data-i18n="footer_copy">جميع الحقوق محفوظة</span>
+  </div>
+</footer>
+
+<script>
+  const translations = {
+    "ar": {
+      "nav_about": "حول", "nav_services": "خدماتنا", "nav_calendar": "التقويم", "nav_contact": "اتصل بنا",
+      "main_title": "المرافقة الغذائية",
+      "intro_p": "دليل شامل للنظام الغذائي لدعم الجسم أثناء مراحل العلاج المختلفة.",
+      "sec1_title": "المبادئ الأساسية للتغذية",
+      "sec2_title": "إدارة الأعراض الجانبية والطاقة",
+      "sec3_title": "نصائح الترطيب (السوائل)",
+      "li1": "<strong>الخضروات:</strong> تناول 5 حصص يومياً على الأقل من الفواكه والخضروات.",
+      "li2": "<strong>الألياف:</strong> استبدل الخبز الأبيض بالحبوب الكاملة كالأسمر.",
+      "li3": "<strong>البقوليات:</strong> أكثر من تناول العدس والحمص والفول.",
+      "li4": "<strong>المصنعات:</strong> قلل من اللحوم الحمراء والمصنعة والمشروبات الغازية.",
+      "li5": "<strong>الطهي:</strong> فضل البخار والسلق بدلاً من القلي.",
+      "li6": "<strong>البروتين:</strong> ركز على الأسماك والبيض لتقوية العضلات.",
+      "li7": "<strong>الدهون:</strong> استخدم زيت الزيتون والأفوكادو والمكسرات.",
+      "li8": "<strong>الوجبات:</strong> تناول وجبات صغيرة ومتعددة في اليوم.",
+      "li9": "<strong>القوام:</strong> اختر أطعمة طرية (مهروس، حساء) في حال التقرحات.",
+      "li10": "<strong>التهيج:</strong> تجنب الأطعمة الحارة أو الحمضية التي تهيج الفم.",
+      "li11": "<strong>المذاق:</strong> استخدم توابل خفيفة للتغلب على تغير الطعم.",
+      "li12": "<strong>الوزن:</strong> راقب وزنك بانتظام لمنع سوء التغذية.",
+      "li13": "<strong>الانتظام:</strong> اشرب الماء بانتظام طوال اليوم.",
+      "li14": "<strong>التعويض:</strong> زد السوائل في حال الحمى أو الإسهال.",
+      "li15": "<strong>الجفاف:</strong> قلل الكافيين؛ فالبول الفاتح علامة ترطيب جيد.",
+      "li16": "<strong>نصيحة:</strong> امص مكعبات الثلج في حال جفاف الفم.",
+      "alert_h": "تحذيرات هامة:",
+      "alert_p": "لا تتناول مكملات أو أعشاب دون استشارة الطبيب لتجنب التفاعلات مع العلاج.",
+      "footer_slogan": "إعادة تعريف الرعاية في مجال الأورام في تونس.",
+      "footer_phone": "هاتف: 123 456 789", "footer_address": "المرسى، تونس", "footer_hours": "الإثنين–الجمعة: 10:00 – 18:00",
+      "footer_copy": "جميع الحقوق محفوظة"
+    },
+    "fr": {
+      "nav_about": "À propos", "nav_services": "Services", "nav_calendar": "Calendrier", "nav_contact": "Contact",
+      "main_title": "Accompagnement Nutritionnel",
+      "intro_p": "Guide complet pour soutenir le corps pendant les phases de traitement.",
+      "sec1_title": "Principes de Base",
+      "sec2_title": "Gestion des Effets & Énergie",
+      "sec3_title": "Conseils d'Hydratation",
+      "li1": "<strong>Légumes:</strong> Consommez au moins 5 portions de fruits et légumes par jour.",
+      "li2": "<strong>Fibres:</strong> Remplacez le pain blanc par des céréales complètes.",
+      "li3": "<strong>Légumineuses:</strong> Consommez plus de lentilles et de pois chiches.",
+      "li4": "<strong>Transformés:</strong> Réduisez la viande rouge et les boissons sucrées.",
+      "li5": "<strong>Cuisson:</strong> Privilégiez la vapeur et l'eau à la friture.",
+      "li6": "<strong>Protéines:</strong> Poissons et œufs pour maintenir les muscles.",
+      "li7": "<strong>Graisses:</strong> Utilisez l'huile d'olive, l'avocat et les noix.",
+      "li8": "<strong>Repas:</strong> Fractionnez en petites portions plusieurs fois par jour.",
+      "li9": "<strong>Texture:</strong> Aliments mous (purée, soupe) en cas d'aphtes.",
+      "li10": "<strong>Irritation:</strong> Évitez les aliments épicés ou acides.",
+      "li11": "<strong>Goût:</strong> Utilisez des épices douces pour le changement de goût.",
+      "li12": "<strong>Poids:</strong> Surveillez votre poids pour éviter la dénutrition.",
+      "li13": "<strong>Régularité:</strong> Buvez de l'eau régulièrement toute la journée.",
+      "li14": "<strong>Compensation:</strong> Augmentez les fluides en cas de fièvre.",
+      "li15": "<strong>Hydratation:</strong> Moins de caféine; urines claires = bonne hydratation.",
+      "li16": "<strong>Astuce:</strong> Sucez des glaçons en cas de bouche sèche.",
+      "alert_h": "Avertissements Importants:",
+      "alert_p": "Pas de compléments sans avis médical pour éviter les interactions.",
+      "footer_slogan": "Redéfinir les soins en oncologie en Tunisie.",
+      "footer_phone": "Tél: 123 456 789", "footer_address": "La Marsa, Tunisie", "footer_hours": "Lun–Ven: 10:00 – 18:00",
+      "footer_copy": "Tous droits réservés"
+    }
+  };
+
+  document.getElementById('lang-switcher').addEventListener('change', (e) => {
+    const lang = e.target.value;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key]) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+  });
+</script>
+
+</body>
+</html>
