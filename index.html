@@ -133,10 +133,12 @@
       gap: 40px;
     }
 
+    /* MODIFICATION ICI : Taille uniforme pour toutes les images */
     .service-item img {
       width: 100%;
       max-width: 360px;
-      height: auto;
+      height: 250px; /* Hauteur fixe imposée */
+      object-fit: cover; /* Recadrage intelligent pour éviter la déformation */
       border-radius: 6px;
     }
 
@@ -157,7 +159,7 @@
       margin-top: 15px;
     }
 
-    /* ===== PARTIE CONTACT (STRICTEMENT ORIGINALE) ===== */
+    /* ===== PARTIE CONTACT ===== */
     .contact-section {
       text-align: center;
       padding: 60px 0 0;
@@ -195,7 +197,7 @@
     @media (max-width: 900px) {
       .burger { display: flex; }
       .nav-links {
-        display: none; /* Cache le menu par défaut sur mobile */
+        display: none; 
         position: absolute;
         top: 70px;
         left: 0;
@@ -206,6 +208,10 @@
       }
       .nav-links.active { display: flex; }
       .service-item { flex-direction: column; text-align: center; }
+      /* Ajustement pour mobile */
+      .service-item img {
+        height: 200px;
+      }
     }
   </style>
 </head>
@@ -221,6 +227,7 @@
       <ul class="nav-links" id="navMenu">
         <li><a href="#about" data-i18n="nav_about">À propos</a></li>
         <li><a href="#services" data-i18n="nav_services">Services</a></li>
+        <li><a href="calendrier.html" data-i18n="nav_calendar">التقويم</a></li>
         <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
         <li>
           <select id="lang-switcher" style="background:rgba(255,255,255,0.1); color:white; border:1px solid #ccc;">
@@ -297,15 +304,13 @@
   </footer>
 
   <script>
-    // Toggle Menu Mobile
     function toggleMenu() {
       document.getElementById('navMenu').classList.toggle('active');
     }
 
-    // Traductions
     const translations = {
       "fr": {
-        "nav_about": "À propos", "nav_services": "Services", "nav_contact": "Contact",
+        "nav_about": "À propos", "nav_services": "Services", "nav_calendar": "Calendrier", "nav_contact": "Contact",
         "hero_title": "Redéfinir le soin oncologique en Tunisie.", "about_h2": "À propos",
         "about_p": "CancerCare est une initiative d'Éducation Thérapeutique du Patient (ETP) dédiée à l'amélioration de la qualité de vie des patients atteints de cancer en Tunisie.",
         "services_title": "Nos Services", "btn_consult": "Consulter", "footer_subtitle": "Redéfinir le soin oncologique en Tunisie.",
@@ -315,7 +320,7 @@
         "contact_tel": "Tél : 123 456 789", "contact_loc": "La Marsa, Tunis", "footer_rights": "© 2026 CancerCare – Tous droits réservés"
       },
       "ar": {
-        "nav_about": "حول", "nav_services": "خدماتنا", "nav_contact": "اتصل بنا",
+        "nav_about": "حول", "nav_services": "خدماتنا", "nav_calendar": "التقويم", "nav_contact": "اتصل ",
         "hero_title": "إعادة تعريف الرعاية في مجال الأورام في تونس.", "about_h2": "حول",
         "about_p": "تعتبر CancerCare مبادرة للتربية العلاجية للمرضى، تهدف إلى تحسين جودة حياة المصابين بالسرطان في تونس.",
         "services_title": "خدماتنا", "btn_consult": "اطّلع", "footer_subtitle": "إعادة تعريف الرعاية في مجال الأورام في تونس.",
@@ -335,5 +340,5 @@
       document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
     });
   </script>
-</body>
+</body> 
 </html>
