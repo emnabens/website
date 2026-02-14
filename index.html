@@ -5,21 +5,24 @@
   <title>CancerCare</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* ===== NOUVEAUX STYLES APPLIQUÉS ===== */
+    /* ===== BASE & DARK MODE ===== */
     body, html {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden; /* Prevent horizontal scroll */
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #000000; /* Fond noir comme l'image */
+      color: #ffffff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
+    /* ===== HEADER AJUSTABLE ===== */
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background-color: #0d4524; /* Match navbar for seamless look */
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      background-color: #0d4524; 
       z-index: 1000;
     }
 
@@ -28,7 +31,6 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background-color: #0d4524;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -38,7 +40,6 @@
       font-weight: bold;
       color: #f0e9e6;
       font-family: 'Georgia', serif;
-      white-space: nowrap;
     }
 
     .nav-links {
@@ -57,20 +58,16 @@
       transition: color 0.3s;
     }
 
-    .nav-links li a:hover {
-      color: #a9d1b9;
-    }
-
-    #lang-switcher {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid #ccc;
-      color: white;
-      padding: 4px;
+    /* Burger Menu pour Mobile */
+    .burger {
+      display: none;
       cursor: pointer;
-      border-radius: 4px;
+      flex-direction: column;
+      gap: 5px;
     }
+    .burger div { width: 25px; height: 3px; background-color: white; }
 
-    /* HERO SECTION */
+    /* ===== HERO SECTION ===== */
     .hero {
       position: relative;
       width: 100%;
@@ -78,56 +75,50 @@
       background-image: url('together.jpg'); 
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
+      margin-top: 70px;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 70px; /* Adjusted for fixed header */
     }
 
     .hero-overlay {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(255, 255, 255, 0.4);
+      background-color: rgba(0, 0, 0, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .hero-overlay h1 {
-      font-size: clamp(1.5rem, 5vw, 3rem); /* Responsive font size */
-      font-family: "Nirmala UI Semilight", sans-serif;
-      color: #0d4524;
+      font-size: clamp(1.5rem, 5vw, 3rem);
+      color: #a9d1b9; /* Vert clair de l'image */
       text-align: center;
-      padding: 0 20px;
-      margin: 0;
+      font-family: "Nirmala UI Semilight", sans-serif;
     }
 
-    /* ABOUT SECTION */
+    /* ===== ABOUT SECTION (DARK) ===== */
     .about-it {
       padding: 4rem 2rem;
-      background-color: #fdfcfb;
+      background-color: #0a0a0a;
     }
 
     .about-it h2 {
       font-size: 1.5rem;
-      color: #0d4524;
+      color: #a9d1b9;
       margin-bottom: 1rem;
       font-family: 'Georgia', serif;
     }
 
     .about-it p {
       max-width: 800px;
-      margin: 0;
       font-size: 1.1rem;
-      color: #333;
+      color: #ccc;
       line-height: 1.8;
     }
 
-    /* SERVICES SECTION */
+    /* ===== SERVICES SECTION ===== */
     .services-section {
       padding: 2rem 2rem;
       max-width: 1200px;
@@ -144,41 +135,29 @@
 
     .service-item img {
       width: 100%;
-      max-width: 360px; /* Fixed max width but responsive below that */
+      max-width: 360px;
       height: auto;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
       border-radius: 6px;
-    }
-
-    .service-text {
-      flex: 1;
     }
 
     .service-text h3 {
       font-size: 1.5rem;
-      color: #0d4524;
+      color: #a9d1b9;
       margin-bottom: 1rem;
       font-family: 'Georgia', serif;
     }
 
     .btn {
       display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
       padding: 0.5em 1.2em;
       background-color: #0d4524;
       color: white;
       text-decoration: none;
       border-radius: 5px;
       margin-top: 15px;
-      transition: opacity 0.3s;
     }
-    
-    .btn:hover { opacity: 0.9; }
 
-    /* CONTACT & FOOTER */
+    /* ===== PARTIE CONTACT (STRICTEMENT ORIGINALE) ===== */
     .contact-section {
       text-align: center;
       padding: 60px 0 0;
@@ -203,47 +182,30 @@
       padding: 30px 20px;
     }
     
-    .contact-info a { color: #0d4524; text-decoration: none; font-weight: bold; }
+    .contact-info a { color: #a9d1b9; text-decoration: none; font-weight: bold; }
 
     footer {
       text-align: center;
       padding: 20px;
-      background: #fdfcfb;
-      border-top: 1px solid #eee;
+      background: #000;
+      border-top: 1px solid #222;
     }
 
-    /* RESPONSIVE DESIGN ADJUSTMENTS */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 900px) {
-      .navbar { padding: 1rem; }
-      .nav-links { gap: 1rem; }
-      
-      .service-item {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-      }
-      .service-item img {
-        max-width: 100%;
-      }
-    }
-
-    @media (max-width: 600px) {
+      .burger { display: flex; }
       .nav-links {
-        gap: 0.5rem;
+        display: none; /* Cache le menu par défaut sur mobile */
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #0d4524;
+        flex-direction: column;
+        padding: 20px 0;
       }
-      .nav-links li a {
-        font-size: 0.85rem;
-      }
-      .hero { height: 300px; }
-    }
-    
-    /* RTL Adjustments for Arabic */
-    [dir="rtl"] .about-it, 
-    [dir="rtl"] .about-it p {
-      text-align: right;
-    }
-    [dir="rtl"] .service-text {
-      text-align: right;
+      .nav-links.active { display: flex; }
+      .service-item { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
@@ -253,12 +215,15 @@
   <header>
     <nav class="navbar">
       <div class="logo">CancerCare</div>
-      <ul class="nav-links">
+      <div class="burger" onclick="toggleMenu()">
+        <div></div><div></div><div></div>
+      </div>
+      <ul class="nav-links" id="navMenu">
         <li><a href="#about" data-i18n="nav_about">À propos</a></li>
         <li><a href="#services" data-i18n="nav_services">Services</a></li>
         <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
         <li>
-          <select id="lang-switcher">
+          <select id="lang-switcher" style="background:rgba(255,255,255,0.1); color:white; border:1px solid #ccc;">
             <option value="fr">FR</option>
             <option value="ar">AR</option>
           </select>
@@ -275,38 +240,38 @@
     </section>
 
     <section class="about-it" id="about">
-      <h2><span data-i18n="about_h2">À propos</span> <span class="hig">CancerCare</span></h2>
+      <h2><span data-i18n="about_h2">À propos</span> <span style="color:#a9d1b9">CancerCare</span></h2>
       <p data-i18n="about_p">
         CancerCare est une initiative d'Éducation Thérapeutique du Patient (ETP) dédiée à l'amélioration de la qualité de vie des patients atteints de cancer en Tunisie.
       </p>
     </section>
 
     <section id="services" class="services-section">
-      <h2 data-i18n="services_title">Nos Services</h2>
+      <h2 data-i18n="services_title" style="color:white; margin-bottom:20px;">Nos Services</h2>
 
       <div class="service-item">
         <img src="alimentation.jpg" alt="Accompagnement nutritionnel">
         <div class="service-text">
           <h3 data-i18n="s1_title">Accompagnement nutritionnel</h3>
-          <p data-i18n="s1_p">Conseils alimentaires personnalisés pour soutenir le traitement, améliorer l’énergie et renforcer l’immunité.</p>
+          <p data-i18n="s1_p" style="color:#ccc;">Conseils alimentaires personnalisés pour soutenir le traitement, améliorer l’énergie et renforcer l’immunité.</p>
           <a href="alimentation.html" class="btn" data-i18n="btn_consult">Consulter</a>
         </div>
       </div>
 
       <div class="service-item">
-        <img src="suivie.jpg" alt="Suivi thérapeutique interactif">
+        <img src="suivie.jpg" alt="Suivi thérapeutique">
         <div class="service-text">
           <h3 data-i18n="s2_title">Suivi thérapeutique interactif</h3>
-          <p data-i18n="s2_p">Suivi régulier de l’état du patient, rappels de traitement et communication continue avec l’équipe.</p>
+          <p data-i18n="s2_p" style="color:#ccc;">Suivi régulier de l’état du patient, rappels de traitement et communication continue avec l’équipe.</p>
           <a href="suivie.html" class="btn" data-i18n="btn_consult">Consulter</a>
         </div>
       </div>
 
       <div class="service-item">
-        <img src="atelier.jpg" alt="Ateliers bien-être et sommeil">
+        <img src="atelier.jpg" alt="Ateliers bien-être">
         <div class="service-text">
           <h3 data-i18n="s3_title">Ateliers bien-être & sommeil</h3>
-          <p data-i18n="s3_p">Ateliers pratiques pour réduire le stress, améliorer le sommeil et favoriser le bien-être mental.</p>
+          <p data-i18n="s3_p" style="color:#ccc;">Ateliers pratiques pour réduire le stress, améliorer le sommeil et favoriser le bien-être mental.</p>
           <a href="atelier.html" class="btn" data-i18n="btn_consult">Consulter</a>
         </div>
       </div>
@@ -332,9 +297,15 @@
   </footer>
 
   <script>
+    // Toggle Menu Mobile
+    function toggleMenu() {
+      document.getElementById('navMenu').classList.toggle('active');
+    }
+
+    // Traductions
     const translations = {
       "fr": {
-        "nav_about": "À propos", "nav_services": "Services", "nav_calendar": "Calendrier", "nav_contact": "Contact",
+        "nav_about": "À propos", "nav_services": "Services", "nav_contact": "Contact",
         "hero_title": "Redéfinir le soin oncologique en Tunisie.", "about_h2": "À propos",
         "about_p": "CancerCare est une initiative d'Éducation Thérapeutique du Patient (ETP) dédiée à l'amélioration de la qualité de vie des patients atteints de cancer en Tunisie.",
         "services_title": "Nos Services", "btn_consult": "Consulter", "footer_subtitle": "Redéfinir le soin oncologique en Tunisie.",
@@ -344,13 +315,13 @@
         "contact_tel": "Tél : 123 456 789", "contact_loc": "La Marsa, Tunis", "footer_rights": "© 2026 CancerCare – Tous droits réservés"
       },
       "ar": {
-        "nav_about": "حول", "nav_services": "خدماتنا", "nav_calendar": "التقويم", "nav_contact": "اتصل بنا",
+        "nav_about": "حول", "nav_services": "خدماتنا", "nav_contact": "اتصل بنا",
         "hero_title": "إعادة تعريف الرعاية في مجال الأورام في تونس.", "about_h2": "حول",
-        "about_p": "تعتبر CancerCare مبادرة للتربية العلاجية للمرضى (ETP)، تهدف إلى تحسين جودة حياة المصابين بالسرطان في تونس.",
+        "about_p": "تعتبر CancerCare مبادرة للتربية العلاجية للمرضى، تهدف إلى تحسين جودة حياة المصابين بالسرطان في تونس.",
         "services_title": "خدماتنا", "btn_consult": "اطّلع", "footer_subtitle": "إعادة تعريف الرعاية في مجال الأورام في تونس.",
-        "s1_title": "المرافقة الغذائية", "s1_p": "نصائح غذائية مخصصة لدعم العلاج وتعزيز المناعة.",
-        "s2_title": "متابعة علاجية تفاعلية", "s2_p": "متابعة منتظمة لحالة المريض وتذكير بالمواعيد.",
-        "s3_title": "ورش عمل الرفاهية", "s3_p": "ورش عمل لتقليل التوتر وتحسين جودة النوم.",
+        "s1_title": "المرافقة الغذائية", "s1_p": "نصائح غذائية مخصصة لدعم العلاج.",
+        "s2_title": "متابعة علاجية تفاعلية", "s2_p": "متابعة منتظمة لحالة المريض وتذكير.",
+        "s3_title": "ورش عمل الرفاهية", "s3_p": "ورش عمل لتقليل التوتر.",
         "contact_tel": "هاتف: 123 456 789", "contact_loc": "المرسى، تونس", "footer_rights": "© 2026 CancerCare – جميع الحقوق محفوظة"
       }
     };
@@ -362,7 +333,6 @@
         if (translations[lang][key]) el.textContent = translations[lang][key];
       });
       document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-      document.documentElement.lang = lang;
     });
   </script>
 </body>
