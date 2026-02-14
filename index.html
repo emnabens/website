@@ -11,7 +11,7 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: #000000; /* Fond noir comme l'image */
+      background-color: #000000;
       color: #ffffff;
       overflow-x: hidden;
       scroll-behavior: smooth;
@@ -58,7 +58,6 @@
       transition: color 0.3s;
     }
 
-    /* Burger Menu pour Mobile */
     .burger {
       display: none;
       cursor: pointer;
@@ -93,12 +92,12 @@
 
     .hero-overlay h1 {
       font-size: clamp(1.5rem, 5vw, 3rem);
-      color: #a9d1b9; /* Vert clair de l'image */
+      color: #a9d1b9;
       text-align: center;
       font-family: "Nirmala UI Semilight", sans-serif;
     }
 
-    /* ===== ABOUT SECTION (DARK) ===== */
+    /* ===== ABOUT SECTION ===== */
     .about-it {
       padding: 4rem 2rem;
       background-color: #0a0a0a;
@@ -133,12 +132,11 @@
       gap: 40px;
     }
 
-    /* MODIFICATION ICI : Taille uniforme pour toutes les images */
     .service-item img {
       width: 100%;
       max-width: 360px;
-      height: 250px; /* Hauteur fixe imposée */
-      object-fit: cover; /* Recadrage intelligent pour éviter la déformation */
+      height: 250px; 
+      object-fit: cover; 
       border-radius: 6px;
     }
 
@@ -159,7 +157,7 @@
       margin-top: 15px;
     }
 
-    /* ===== PARTIE CONTACT ===== */
+    /* ===== CONTACT SECTION ===== */
     .contact-section {
       text-align: center;
       padding: 60px 0 0;
@@ -208,10 +206,7 @@
       }
       .nav-links.active { display: flex; }
       .service-item { flex-direction: column; text-align: center; }
-      /* Ajustement pour mobile */
-      .service-item img {
-        height: 200px;
-      }
+      .service-item img { height: 200px; }
     }
   </style>
 </head>
@@ -227,7 +222,7 @@
       <ul class="nav-links" id="navMenu">
         <li><a href="#about" data-i18n="nav_about">À propos</a></li>
         <li><a href="#services" data-i18n="nav_services">Services</a></li>
-        <li><a href="calendrier.html" data-i18n="nav_calendar">التقويم</a></li>
+        <li><a href="calendrier.html" data-i18n="nav_calendar">Calendrier</a></li>
         <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
         <li>
           <select id="lang-switcher" style="background:rgba(255,255,255,0.1); color:white; border:1px solid #ccc;">
@@ -310,34 +305,63 @@
 
     const translations = {
       "fr": {
-        "nav_about": "À propos", "nav_services": "Services", "nav_calendar": "Calendrier", "nav_contact": "Contact",
-        "hero_title": "Redéfinir le soin oncologique en Tunisie.", "about_h2": "À propos",
+        "nav_about": "À propos",
+        "nav_services": "Services",
+        "nav_calendar": "Calendrier",
+        "nav_contact": "Contact",
+        "hero_title": "Redéfinir le soin oncologique en Tunisie.",
+        "about_h2": "À propos",
         "about_p": "CancerCare est une initiative d'Éducation Thérapeutique du Patient (ETP) dédiée à l'amélioration de la qualité de vie des patients atteints de cancer en Tunisie.",
-        "services_title": "Nos Services", "btn_consult": "Consulter", "footer_subtitle": "Redéfinir le soin oncologique en Tunisie.",
-        "s1_title": "Accompagnement nutritionnel", "s1_p": "Conseils alimentaires personnalisés pour soutenir le traitement.",
-        "s2_title": "Suivi thérapeutique interactif", "s2_p": "Suivi régulier de l’état du patient et rappels.",
-        "s3_title": "Ateliers bien-être & sommeil", "s3_p": "Ateliers pratiques pour réduire le stress.",
-        "contact_tel": "Tél : 123 456 789", "contact_loc": "La Marsa, Tunis", "footer_rights": "© 2026 CancerCare – Tous droits réservés"
+        "services_title": "Nos Services",
+        "btn_consult": "Consulter",
+        "footer_subtitle": "Redéfinir le soin oncologique en Tunisie.",
+        "s1_title": "Accompagnement nutritionnel",
+        "s1_p": "Conseils alimentaires personnalisés pour soutenir le traitement, améliorer l’énergie et renforcer l’immunité.",
+        "s2_title": "Suivi thérapeutique interactif",
+        "s2_p": "Suivi régulier de l’état du patient, rappels de traitement et communication continue avec l’équipe.",
+        "s3_title": "Ateliers bien-être & sommeil",
+        "s3_p": "Ateliers pratiques pour réduire le stress, améliorer le sommeil et favoriser le bien-être mental.",
+        "contact_tel": "Tél : 123 456 789",
+        "contact_loc": "La Marsa, Tunis",
+        "footer_rights": "© 2026 CancerCare – Tous droits réservés"
       },
       "ar": {
-        "nav_about": "حول", "nav_services": "خدماتنا", "nav_calendar": "التقويم", "nav_contact": "اتصل ",
-        "hero_title": "إعادة تعريف الرعاية في مجال الأورام في تونس.", "about_h2": "حول",
+        "nav_about": "حول",
+        "nav_services": "خدماتنا",
+        "nav_calendar": "التقويم",
+        "nav_contact": "اتصل بنا",
+        "hero_title": "إعادة تعريف الرعاية في مجال الأورام في تونس.",
+        "about_h2": "حول",
         "about_p": "تعتبر CancerCare مبادرة للتربية العلاجية للمرضى، تهدف إلى تحسين جودة حياة المصابين بالسرطان في تونس.",
-        "services_title": "خدماتنا", "btn_consult": "اطّلع", "footer_subtitle": "إعادة تعريف الرعاية في مجال الأورام في تونس.",
-        "s1_title": "المرافقة الغذائية", "s1_p": "نصائح غذائية مخصصة لدعم العلاج.",
-        "s2_title": "متابعة علاجية تفاعلية", "s2_p": "متابعة منتظمة لحالة المريض وتذكير.",
-        "s3_title": "ورش عمل الرفاهية", "s3_p": "ورش عمل لتقليل التوتر.",
-        "contact_tel": "هاتف: 123 456 789", "contact_loc": "المرسى، تونس", "footer_rights": "© 2026 CancerCare – جميع الحقوق محفوظة"
+        "services_title": "خدماتنا",
+        "btn_consult": "اطّلع",
+        "footer_subtitle": "إعادة تعريف الرعاية في مجال الأورام في تونس.",
+        "s1_title": "المرافقة الغذائية",
+        "s1_p": "نصائح غذائية مخصصة لدعم العلاج، تحسين الطاقة وتعزيز المناعة.",
+        "s2_title": "متابعة علاجية تفاعلية",
+        "s2_p": "متابعة منتظمة لحالة المريض، تذكير بالعلاج وتواصل مستمر مع الفريق.",
+        "s3_title": "ورش عمل الرفاهية والنوم",
+        "s3_p": "ورش عمل تطبيقية لتقليل التوتر، تحسين النوم وتعزيز الصحة النفسية.",
+        "contact_tel": "هاتف: 123 456 789",
+        "contact_loc": "المرسى، تونس",
+        "footer_rights": "© 2026 CancerCare – جميع الحقوق محفوظة"
       }
     };
 
     document.getElementById('lang-switcher').addEventListener('change', (e) => {
       const lang = e.target.value;
+      
+      // Mettre à jour tous les éléments avec data-i18n
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) el.textContent = translations[lang][key];
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
       });
+
+      // Changer la direction du texte pour l'arabe
       document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+      document.documentElement.lang = lang;
     });
   </script>
 </body> 
